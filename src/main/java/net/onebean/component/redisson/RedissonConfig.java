@@ -1,6 +1,5 @@
 package net.onebean.component.redisson;
 
-import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import net.onebean.util.PropUtil;
 import org.redisson.Redisson;
