@@ -24,11 +24,11 @@ public class RedissonService {
     public Config getRedissonClientConf() {
         return redissonClient.getConfig();
     }
-
-    /**`
+    /**
      * 获取字符串对象
      * @param objectName key
-     * @return <T>
+     * @param <T> 泛型类型
+     * @return 结果
      */
     public <T> RBucket<T> getRBucket(String objectName) {
         RBucket<T> bucket = redissonClient.getBucket(objectName);
@@ -38,57 +38,59 @@ public class RedissonService {
     /**
      * 获取Map对象
      * @param objectName key
-     * @return <K, V>
+     * @param <K> 键
+     * @param <V> 值
+     * @return 结果
      */
     public <K, V> RMap<K, V> getRMap(String objectName) {
         RMap<K, V> map = redissonClient.getMap(objectName);
         return map;
     }
-
     /**
      * 获取有序集合
      * @param objectName key
-     * @return <V>
+     * @param <V> 值
+     * @return 结果
      */
     public <V> RSortedSet<V> getRSortedSet(String objectName) {
         RSortedSet<V> sortedSet = redissonClient.getSortedSet(objectName);
         return sortedSet;
     }
-
     /**
      * 获取集合
      * @param objectName key
-     * @return <V> RSet<V>
+     * @param <V> 泛型类型
+     * @return 结果
      */
     public <V> RSet<V> getRSet(String objectName) {
         RSet<V> rSet = redissonClient.getSet(objectName);
         return rSet;
     }
-
     /**
      * 获取列表
      * @param objectName key
-     * @return <V> RList<V>
+     * @param <V> 泛型类型
+     * @return 结果
      */
     public <V> RList<V> getRList(String objectName) {
         RList<V> rList = redissonClient.getList(objectName);
         return rList;
     }
-
     /**
      * 获取队列
      * @param objectName key
-     * @return <V> RQueue<V>
+     * @param <V> 泛型类型
+     * @return 结果
      */
     public <V> RQueue<V> getRQueue(String objectName) {
         RQueue<V> rQueue = redissonClient.getQueue(objectName);
         return rQueue;
     }
-
     /**
      * 获取双端队列
      * @param objectName key
-     * @return <V> RDeque<V>
+     * @param <V> 泛型
+     * @return 结果
      */
     public <V> RDeque<V> getRDeque(String objectName) {
         RDeque<V> rDeque = redissonClient.getDeque(objectName);

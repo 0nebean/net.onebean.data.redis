@@ -10,10 +10,12 @@ import java.util.Set;
  * 2017年9月4日 下午3:02:19
  */
 public interface IRedisService {
+
     /**
      * 缓存值并设定时效
-     * @param key 键 
+     * @param key 键
      * @param value 值
+     * @param time 失效时间
      * @return boolean
      */
     boolean set(String key, String value,long time);  
@@ -36,19 +38,21 @@ public interface IRedisService {
      * @return String
      */
     String get(String key);  
-      /**
-       * 缓存list
-       * @param key 键
-       * @param list list
-       * @return boolean
-       */
+    /**
+     * 缓存list
+     * @param key 键
+     * @param list list
+     * @param <T> 泛型类型
+     * @return boolean
+     */
     <T> boolean setList(String key ,List<T> list);  
-      /**
-       * 根据key获取缓存中的list
-       * @param key 键
-       * @param clz class
-       * @return List<T>
-       */
+    /**
+     * 根据key获取缓存中的list
+     * @param key 键
+     * @param clz class
+     * @param <T> 泛型类型
+     * @return 结果
+     */
     <T> List<T> getList(String key,Class<T> clz);  
       /**
        * 在key对应list的头部添加字符串元素
