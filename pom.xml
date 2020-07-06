@@ -10,7 +10,7 @@
         <version>1.0.0.RELEASE</version>
     </parent>
 
-    <version>1.0.1.RELEASE</version>
+    <version>1.0.2.RELEASE</version>
     <artifactId>net.onebean.data.redis</artifactId>
     <packaging>jar</packaging>
 

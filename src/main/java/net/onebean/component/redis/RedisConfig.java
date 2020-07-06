@@ -1,6 +1,8 @@
 package net.onebean.component.redis;
 
 import ch.qos.logback.classic.Logger;
+import net.onebean.core.form.Parse;
+import net.onebean.util.PropUtil;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -15,7 +17,11 @@ import redis.clients.jedis.JedisPoolConfig;
 public class RedisConfig {
   
 	private static final Logger logger = (Logger) LoggerFactory.getLogger(RedisConfig.class);
-      
+	private static final String HOST_NAME_KEY = "spring.redis.hostName";
+	private static final String PORT_KEY = "spring.redis.port";
+	private static final String PASSWORD_KEY = "spring.redis.password";
+	private static final String DB_SELECT_KEY = "spring.redis.database";
+
     @Bean(name = "getRedisConfig")
     @ConfigurationProperties(prefix="spring.redis")
     public JedisPoolConfig getRedisConfig(){
@@ -26,7 +32,11 @@ public class RedisConfig {
     public JedisConnectionFactory getConnectionFactory(@Qualifier("getRedisConfig")JedisPoolConfig getRedisConfig){
         JedisConnectionFactory factory = new JedisConnectionFactory();
         factory.setPoolConfig(getRedisConfig);
-        logger.info("JedisConnectionFactory bean init success.");  
+        factory.setHostName(PropUtil.getInstance().getConfig(HOST_NAME_KEY,PropUtil.PUBLIC_CONF_REDIS));
+        factory.setPort(Parse.toInt(PropUtil.getInstance().getConfig(PORT_KEY,PropUtil.PUBLIC_CONF_REDIS)));
+        factory.setPassword(PropUtil.getInstance().getConfig(PASSWORD_KEY,PropUtil.PUBLIC_CONF_REDIS));
+        factory.setDatabase(Parse.toInt(PropUtil.getInstance().getConfig(DB_SELECT_KEY,PropUtil.PUBLIC_CONF_REDIS)));
+        logger.info("JedisConnectionFactory bean init success.");
         return factory;  
     }  
       
